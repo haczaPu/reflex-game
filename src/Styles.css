@@ -2,21 +2,24 @@
   margin: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
 }
 
 body {
-  background-color: #3d3d3d;
+  background-image: linear-gradient(45deg, #15446b 0%, #76c0b7 100%);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  width: 100vw;
+  height: 100vh;
 }
 
 body .App {
   width: 100%;
-  background-color: #c2c1c1;
+  margin-top: 15%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -30,16 +33,92 @@ body .App {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: relative;
 }
 
 body .App header {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   text-align: center;
-  font-size: 60px;
-  background-color: #b1dd86;
+  font-size: 80px;
+  font-weight: 700;
+  color: #145074;
 }
 
-body .App .board {
-  width: 20%;
+body .App .board-container {
+  width: 550px;
+  height: 550px;
+  border: 3px solid #145074;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+
+body .App .board-container .numbers-container {
+  color: #145074;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 10px;
+}
+
+body .App .board-container .numbers-container .life {
+  font-size: 20px;
+}
+
+body .App .board-container .numbers-container .life div {
+  color: #80e45d;
+  display: inline-block;
+  padding-left: 25px;
+}
+
+body .App .board-container .numbers-container .timer {
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  font-size: 20px;
+}
+
+body .App .board-container .numbers-container .timer div {
+  color: #80e45d;
+  font-size: 40px;
+  text-align: right;
+}
+
+body .App .board-container .numbers-container .score {
+  font-size: 20px;
+}
+
+body .App .board-container .numbers-container .score div {
+  color: #80e45d;
+  display: inline-block;
+  padding-left: 10px;
+}
+
+body .App .board-container .board {
+  margin-top: 50px;
+  width: 250px;
+  height: 250px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -47,38 +126,95 @@ body .App .board {
       flex-wrap: wrap;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  -ms-flex-line-pack: center;
-      align-content: center;
-  background-color: cadetblue;
 }
 
-body .App .board .square {
+body .App .board-container .board .square {
   width: 40px;
   height: 40px;
   border-radius: 5px;
-  border: 1px solid #242424;
-  background: #46be00;
+  border: none;
+  background: #145074;
   margin: 2px;
+  -webkit-box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.2);
+          box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.2);
+  outline: none;
 }
 
-body .App .board .square-target {
+body .App .board-container .board .square:active {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  background-color: #b60d0d;
+}
+
+body .App .board-container .board .square-target {
   width: 40px;
   height: 40px;
   border-radius: 5px;
-  border: 1px solid #242424;
-  background-color: #5eff00;
+  border: none;
+  background-color: #80e45d;
   margin: 2px;
+  -webkit-box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.2);
+          box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.2);
+  outline: none;
 }
 
-body .App button {
-  width: 50px;
+body .App .board-container .board .square-target:active {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+body .App .board-container .buttons {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: auto;
+}
+
+body .App .board-container .buttons .start {
+  width: 120px;
   height: 50px;
+  font-size: 30px;
+  background: none;
+  border: none;
+  color: #145074;
+  font-weight: bold;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+}
+
+body .App .board-container .buttons .start:hover {
+  color: #80e45d;
+}
+
+body .App .board-container .buttons .reset {
+  width: 120px;
+  height: 50px;
+  font-size: 30px;
+  background: none;
+  border: none;
+  color: #145074;
+  font-weight: bold;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+}
+
+body .App .board-container .buttons .reset:hover {
+  color: #80e45d;
 }
 
 body .App .gameOver {
   text-align: center;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(65, 105, 225, 0.404);
+  color: #368d33;
+  font-size: 60px;
+  position: absolute;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
 }
 /*# sourceMappingURL=Styles.css.map */

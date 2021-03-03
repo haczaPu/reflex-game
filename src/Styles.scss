@@ -1,64 +1,172 @@
 * {
   margin: 0;
   box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
 }
+//#13547a;
+$mainColor: #145074;
+$secColor: #80e45d;
 
 body {
-  background-color: rgb(61, 61, 61);
+  // background-color: rgb(61, 61, 61);
+  background-image: linear-gradient(45deg, #15446b 0%, #76c0b7 100%);
+  // background-image: linear-gradient(to top, #0c3483 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df 100%);
   display: flex;
   justify-content: center;
+  width: 100vw;
+  height: 100vh;
 
   .App {
     width: 100%;
-    background-color: rgb(194, 193, 193);
+    // background-color: rgb(194, 193, 193);
+    margin-top: 15%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
 
     header {
-      text-align: center;
-      font-size: 60px;
-      background-color: rgb(177, 221, 134);
-    }
-
-    .board {
-      width: 20%;
+      width: 100%;
       display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      align-content: center;
-      background-color: cadetblue;
-
-      .square {
-        width: 40px;
-        height: 40px;
-        border-radius: 5px;
-        border: 1px solid rgb(36, 36, 36);
-        // background-color: brown;
-        background: rgb(70, 190, 0);
-        margin: 2px;
-      }
-
-      .square-target {
-        width: 40px;
-        height: 40px;
-        border-radius: 5px;
-        border: 1px solid rgb(36, 36, 36);
-        background-color: rgb(94, 255, 0);
-        margin: 2px;
-      }
+      justify-content: center;
+      text-align: center;
+      font-size: 80px;
+      font-weight: 700;
+      color: $mainColor;
+      // background-color: blue;
     }
-    button {
-      width: 50px;
-      height: 50px;
+
+    .board-container {
+      width: 550px;
+      height: 550px;
+      border: 3px solid $mainColor;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+
+      .numbers-container {
+        color: $mainColor;
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        padding: 10px;
+        .life {
+          font-size: 20px;
+          div {
+            color: $secColor;
+            display: inline-block;
+            padding-left: 25px;
+          }
+        }
+        .timer {
+          align-self: flex-start;
+          font-size: 20px;
+          div {
+            color: $secColor;
+            font-size: 40px;
+            text-align: right;
+          }
+        }
+        .score {
+          font-size: 20px;
+          div {
+            color: $secColor;
+            display: inline-block;
+            padding-left: 10px;
+          }
+        }
+      }
+
+      .board {
+        margin-top: 50px;
+        width: 250px;
+        height: 250px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+
+        .square {
+          width: 40px;
+          height: 40px;
+          border-radius: 5px;
+          border: none;
+          background: $mainColor;
+          margin: 2px;
+          box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.2);
+          outline: none;
+          // transition: 0.1s;
+          &:active {
+            box-shadow: none;
+            background-color: rgb(182, 13, 13);
+          }
+        }
+
+        .square-target {
+          width: 40px;
+          height: 40px;
+          border-radius: 5px;
+          border: none;
+          // background-color: #1777af;
+          background-color: $secColor;
+          margin: 2px;
+          box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.2);
+          outline: none;
+          // transition: 0.1s;
+          &:active {
+            box-shadow: none;
+          }
+        }
+      }
+      .buttons {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-top: auto;
+
+        .start {
+          width: 120px;
+          height: 50px;
+          font-size: 30px;
+          background: none;
+          border: none;
+          color: $mainColor;
+          font-weight: bold;
+          transition: 0.5s;
+          outline: none;
+
+          &:hover {
+            color: $secColor;
+          }
+        }
+        .reset {
+          width: 120px;
+          height: 50px;
+          font-size: 30px;
+          background: none;
+          border: none;
+          color: $mainColor;
+          font-weight: bold;
+          transition: 0.5s;
+          outline: none;
+
+          &:hover {
+            color: $secColor;
+          }
+        }
+      }
     }
     .gameOver {
       text-align: center;
-      width: 100vw;
-      height: 100vh;
-      //   position: fixed;
-      background-color: rgba(65, 105, 225, 0.404);
+      color: #368d33;
+      font-size: 60px;
+      // width: 100vw;
+      // height: 100vh;
+      position: absolute;
+      align-self: center;
     }
   }
 }
