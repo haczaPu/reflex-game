@@ -3,10 +3,11 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
 }
 
 body {
-  background-image: linear-gradient(45deg, #15446b 0%, #76c0b7 100%);
+  background-image: linear-gradient(60deg, #15446b 0%, #76c0b7 100%);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -48,9 +49,16 @@ body .App header {
   font-size: 80px;
   font-weight: 700;
   color: #145074;
+  padding-right: 200px;
 }
 
-body .App .board-container {
+body .App main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+body .App main .board-container {
   width: 550px;
   height: 550px;
   border: 3px solid #145074;
@@ -71,7 +79,7 @@ body .App .board-container {
   position: relative;
 }
 
-body .App .board-container .numbers-container {
+body .App main .board-container .numbers-container {
   color: #145074;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -83,40 +91,40 @@ body .App .board-container .numbers-container {
   padding: 10px;
 }
 
-body .App .board-container .numbers-container .life {
-  font-size: 20px;
+body .App main .board-container .numbers-container .life {
+  font-size: 25px;
 }
 
-body .App .board-container .numbers-container .life div {
+body .App main .board-container .numbers-container .life div {
   color: #80e45d;
   display: inline-block;
-  padding-left: 25px;
+  padding-left: 40px;
 }
 
-body .App .board-container .numbers-container .timer {
+body .App main .board-container .numbers-container .timer {
   -ms-flex-item-align: start;
       align-self: flex-start;
   font-size: 20px;
 }
 
-body .App .board-container .numbers-container .timer div {
+body .App main .board-container .numbers-container .timer div {
   color: #80e45d;
   font-size: 40px;
   text-align: right;
 }
 
-body .App .board-container .numbers-container .score {
-  font-size: 20px;
+body .App main .board-container .numbers-container .score {
+  font-size: 25px;
 }
 
-body .App .board-container .numbers-container .score div {
+body .App main .board-container .numbers-container .score div {
   color: #80e45d;
   display: inline-block;
   padding-left: 10px;
 }
 
-body .App .board-container .board {
-  margin-top: 50px;
+body .App main .board-container .board {
+  margin-top: 55px;
   width: 250px;
   height: 250px;
   display: -webkit-box;
@@ -128,7 +136,7 @@ body .App .board-container .board {
       justify-content: space-around;
 }
 
-body .App .board-container .board .square {
+body .App main .board-container .board .square {
   width: 40px;
   height: 40px;
   border-radius: 5px;
@@ -140,13 +148,13 @@ body .App .board-container .board .square {
   outline: none;
 }
 
-body .App .board-container .board .square:active {
+body .App main .board-container .board .square:active {
   -webkit-box-shadow: none;
           box-shadow: none;
   background-color: #b60d0d;
 }
 
-body .App .board-container .board .square-target {
+body .App main .board-container .board .square-target {
   width: 40px;
   height: 40px;
   border-radius: 5px;
@@ -158,12 +166,13 @@ body .App .board-container .board .square-target {
   outline: none;
 }
 
-body .App .board-container .board .square-target:active {
+body .App main .board-container .board .square-target:active {
   -webkit-box-shadow: none;
           box-shadow: none;
+  background-color: #6ebe51;
 }
 
-body .App .board-container .buttons {
+body .App main .board-container .buttons {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -174,7 +183,8 @@ body .App .board-container .buttons {
   margin-top: auto;
 }
 
-body .App .board-container .buttons .start {
+body .App main .board-container .buttons .start,
+body .App main .board-container .buttons .reset {
   width: 120px;
   height: 50px;
   font-size: 30px;
@@ -187,34 +197,79 @@ body .App .board-container .buttons .start {
   outline: none;
 }
 
-body .App .board-container .buttons .start:hover {
+body .App main .board-container .buttons .start:hover,
+body .App main .board-container .buttons .reset:hover {
   color: #80e45d;
 }
 
-body .App .board-container .buttons .reset {
-  width: 120px;
-  height: 50px;
-  font-size: 30px;
-  background: none;
-  border: none;
-  color: #145074;
-  font-weight: bold;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
-  outline: none;
-}
-
-body .App .board-container .buttons .reset:hover {
-  color: #80e45d;
-}
-
-body .App .gameOver {
+body .App main .board-container .gameOver {
   text-align: center;
-  color: #368d33;
+  color: #80e45d;
   font-size: 60px;
+  padding-bottom: 5px;
   position: absolute;
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
+}
+
+body .App nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-left: 10px;
+  color: #80e45d;
+  font-size: 20px;
+  width: 200px;
+}
+
+body .App nav .highscores {
+  width: 100%;
+  background-color: rgba(19, 84, 122, 0.25);
+  margin-top: 10px;
+  padding: 10px;
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
+  border: 3px solid #145074;
+  border-radius: 10px;
+  color: #80e45d;
+}
+
+body .App nav .highscores ::marker {
+  color: #145074;
+}
+
+body .App nav .options {
+  width: 100%;
+  background-color: rgba(19, 84, 122, 0.25);
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  border: 3px solid #145074;
+  border-radius: 10px;
+}
+
+body .App nav .options div {
+  font-size: 16px;
+  color: #145074;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+body .App nav .options div input {
+  width: 70%;
+  padding-left: 5px;
+  color: #145074;
+  margin-left: 5px;
+  background-color: #76c0b7;
+  border-radius: 5px;
+  outline: none;
+  border: none;
 }
 /*# sourceMappingURL=Styles.css.map */

@@ -6,6 +6,8 @@ import Board from "./components/Board";
 import Timer from "./components/Timer";
 import Popup from "./components/Popup";
 import Score from "./components/Score";
+import HighScores from "./components/HighScores";
+import Options from "./components/Options";
 
 //Generate Board
 const BASE_BOARD = [];
@@ -23,23 +25,51 @@ function App() {
   const [targetDelay, setTargetDelay] = useState(null);
   const [boardSize, setBoardSize] = useState(BASE_BOARD);
   const [score, setScore] = useState(0);
-  const [ommited, setOmmited] = useState(true);
+  const [highScores, setHighScores] = useState([]);
+  const [name, setName] = useState("Unknown");
 
-  //Ommited target
-  // useEffect(() => {
-  //   if (ommited) {
-  //     setLife(life - 1);
-  //   }
-  // }, [ommited]);
+  //Get local scores
+  useEffect(() => {
+    const getLocalScores = () => {
+      if (localStorage.getItem("highScores") === null) {
+        localStorage.setItem("highScores", JSON.stringify([]));
+      } else {
+        let scoresLocal = JSON.parse(localStorage.getItem("highScores"));
+        setHighScores(scoresLocal);
+      }
+    };
+    getLocalScores();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  //Life count - game over check
+  //Save score to local
+  useEffect(() => {
+    const saveLocalScores = () => {
+      localStorage.setItem("highScores", JSON.stringify(highScores));
+    };
+    saveLocalScores();
+  }, [highScores]);
+
+  //Life count - game over check -
   useEffect(() => {
     if (life === 0) {
       setGameOver(true);
       setBoardSize(BASE_BOARD);
       setTimeDelay(null);
       setTargetDelay(null);
+
+      //High scores positioning
+      const comapreScores = (a, b) => {
+        return b - a;
+      };
+      const newHighScores = [...highScores, score].sort(comapreScores);
+      if (newHighScores.length > 5) {
+        // eslint-disable-next-line no-unused-vars
+        const newHighScores2 = newHighScores.pop();
+      }
+      setHighScores(newHighScores);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [life]);
 
   //Lvl change
@@ -71,6 +101,9 @@ function App() {
     setGameOver(false);
     setTimeDelay(1000);
     setTargetDelay(1000);
+    setLife(3);
+    setScore(0);
+    setTime(60);
   };
 
   //Reset
@@ -101,38 +134,39 @@ function App() {
   return (
     <div className="App">
       <header>REFLEX</header>
-
-      <div className="board-container">
-        <div className="numbers-container">
-          <div>
-            <Score score={score} />
-            <Life life={life} />
+      <main>
+        <div className="board-container">
+          <div className="numbers-container">
+            <div>
+              <Score score={score} />
+              <Life life={life} />
+            </div>
+            <Timer time={time} />
           </div>
-          <Timer time={time} />
+          <Board
+            start={start}
+            boardSize={boardSize}
+            setLife={setLife}
+            life={life}
+            score={score}
+            setScore={setScore}
+            gameOver={gameOver}
+          />
+          <div className="buttons">
+            <button className="start" onClick={handleStartBtn}>
+              START
+            </button>
+            <button className="reset" onClick={handleResetBtn}>
+              RESET
+            </button>
+          </div>
+          <Popup gameOver={gameOver} />
         </div>
-
-        <Board
-          ommited={ommited}
-          setOmmited={setOmmited}
-          start={start}
-          boardSize={boardSize}
-          setLife={setLife}
-          life={life}
-          score={score}
-          setScore={setScore}
-          gameOver={gameOver}
-        />
-        <div className="buttons">
-          <button className="start" onClick={handleStartBtn}>
-            START
-          </button>
-          <button className="reset" onClick={handleResetBtn}>
-            RESET
-          </button>
-        </div>
-      </div>
-
-      <Popup gameOver={gameOver} />
+        <nav>
+          <Options time={time} setName={setName} />
+          <HighScores highScores={highScores} setHighScores={setHighScores} score={score} />
+        </nav>
+      </main>
     </div>
   );
 }

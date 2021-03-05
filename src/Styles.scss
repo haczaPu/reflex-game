@@ -2,15 +2,15 @@
   margin: 0;
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
 }
-//#13547a;
+
+//Variables
 $mainColor: #145074;
 $secColor: #80e45d;
 
 body {
-  // background-color: rgb(61, 61, 61);
-  background-image: linear-gradient(45deg, #15446b 0%, #76c0b7 100%);
-  // background-image: linear-gradient(to top, #0c3483 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df 100%);
+  background-image: linear-gradient(60deg, #15446b 0%, #76c0b7 100%);
   display: flex;
   justify-content: center;
   width: 100vw;
@@ -34,139 +34,172 @@ body {
       font-size: 80px;
       font-weight: 700;
       color: $mainColor;
-      // background-color: blue;
+      padding-right: 200px;
     }
+    main {
+      display: flex;
 
-    .board-container {
-      width: 550px;
-      height: 550px;
-      border: 3px solid $mainColor;
-      border-radius: 10px;
+      .board-container {
+        width: 550px;
+        height: 550px;
+        border: 3px solid $mainColor;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+
+        .numbers-container {
+          color: $mainColor;
+          display: flex;
+          width: 100%;
+          justify-content: space-between;
+          padding: 10px;
+          .life {
+            font-size: 25px;
+            div {
+              color: $secColor;
+              display: inline-block;
+              padding-left: 40px;
+            }
+          }
+          .timer {
+            align-self: flex-start;
+            font-size: 20px;
+            div {
+              color: $secColor;
+              font-size: 40px;
+              text-align: right;
+            }
+          }
+          .score {
+            font-size: 25px;
+            div {
+              color: $secColor;
+              display: inline-block;
+              padding-left: 10px;
+            }
+          }
+        }
+
+        .board {
+          margin-top: 55px;
+          width: 250px;
+          height: 250px;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-around;
+
+          .square {
+            width: 40px;
+            height: 40px;
+            border-radius: 5px;
+            border: none;
+            background: $mainColor;
+            margin: 2px;
+            box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.2);
+            outline: none;
+            // transition: 0.1s;
+            &:active {
+              box-shadow: none;
+              background-color: rgb(182, 13, 13);
+            }
+          }
+
+          .square-target {
+            width: 40px;
+            height: 40px;
+            border-radius: 5px;
+            border: none;
+            // background-color: #1777af;
+            background-color: $secColor;
+            margin: 2px;
+            box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.2);
+            outline: none;
+            // transition: 0.1s;
+            &:active {
+              box-shadow: none;
+              background-color: #6ebe51;
+            }
+          }
+        }
+        .buttons {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          margin-top: auto;
+
+          .start,
+          .reset {
+            width: 120px;
+            height: 50px;
+            font-size: 30px;
+            background: none;
+            border: none;
+            color: $mainColor;
+            font-weight: bold;
+            transition: 0.5s;
+            outline: none;
+
+            &:hover {
+              color: $secColor;
+            }
+          }
+        }
+        .gameOver {
+          text-align: center;
+          color: $secColor;
+          font-size: 60px;
+          padding-bottom: 5px;
+          position: absolute;
+          align-self: center;
+        }
+      }
+    }
+    nav {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      position: relative;
+      margin-left: 10px;
+      color: $secColor;
+      font-size: 20px;
+      width: 200px;
 
-      .numbers-container {
-        color: $mainColor;
-        display: flex;
+      .highscores {
         width: 100%;
-        justify-content: space-between;
+        background-color: rgba(19, 84, 122, 0.25);
+        margin-top: 10px;
         padding: 10px;
-        .life {
-          font-size: 20px;
-          div {
-            color: $secColor;
-            display: inline-block;
-            padding-left: 25px;
-          }
-        }
-        .timer {
-          align-self: flex-start;
-          font-size: 20px;
-          div {
-            color: $secColor;
-            font-size: 40px;
-            text-align: right;
-          }
-        }
-        .score {
-          font-size: 20px;
-          div {
-            color: $secColor;
-            display: inline-block;
-            padding-left: 10px;
-          }
+        flex: 2;
+        border: 3px solid $mainColor;
+        border-radius: 10px;
+        color: $secColor;
+        ::marker {
+          color: $mainColor;
         }
       }
-
-      .board {
-        margin-top: 50px;
-        width: 250px;
-        height: 250px;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-
-        .square {
-          width: 40px;
-          height: 40px;
-          border-radius: 5px;
-          border: none;
-          background: $mainColor;
-          margin: 2px;
-          box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.2);
-          outline: none;
-          // transition: 0.1s;
-          &:active {
-            box-shadow: none;
-            background-color: rgb(182, 13, 13);
-          }
-        }
-
-        .square-target {
-          width: 40px;
-          height: 40px;
-          border-radius: 5px;
-          border: none;
-          // background-color: #1777af;
-          background-color: $secColor;
-          margin: 2px;
-          box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.2);
-          outline: none;
-          // transition: 0.1s;
-          &:active {
-            box-shadow: none;
-          }
-        }
-      }
-      .buttons {
+      .options {
         width: 100%;
-        display: flex;
-        justify-content: space-between;
-        margin-top: auto;
-
-        .start {
-          width: 120px;
-          height: 50px;
-          font-size: 30px;
-          background: none;
-          border: none;
+        background-color: rgba(19, 84, 122, 0.25);
+        flex: 1;
+        border: 3px solid $mainColor;
+        border-radius: 10px;
+        div {
+          font-size: 16px;
           color: $mainColor;
-          font-weight: bold;
-          transition: 0.5s;
-          outline: none;
-
-          &:hover {
-            color: $secColor;
-          }
-        }
-        .reset {
-          width: 120px;
-          height: 50px;
-          font-size: 30px;
-          background: none;
-          border: none;
-          color: $mainColor;
-          font-weight: bold;
-          transition: 0.5s;
-          outline: none;
-
-          &:hover {
-            color: $secColor;
+          display: flex;
+          input {
+            width: 70%;
+            padding-left: 5px;
+            color: $mainColor;
+            margin-left: 5px;
+            background-color: #76c0b7;
+            border-radius: 5px;
+            outline: none;
+            border: none;
           }
         }
       }
-    }
-    .gameOver {
-      text-align: center;
-      color: #368d33;
-      font-size: 60px;
-      // width: 100vw;
-      // height: 100vh;
-      position: absolute;
-      align-self: center;
     }
   }
 }
