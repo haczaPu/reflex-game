@@ -124,25 +124,15 @@ body .App main .board-container .numbers-container .score div {
 }
 
 body .App main .board-container .board {
-  margin-top: 55px;
-  width: 250px;
-  height: 250px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  margin: auto;
+  display: -ms-grid;
+  display: grid;
 }
 
 body .App main .board-container .board .square {
-  width: 40px;
-  height: 40px;
   border-radius: 5px;
   border: none;
   background: #145074;
-  margin: 2px;
   -webkit-box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.2);
           box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.2);
   outline: none;
@@ -155,12 +145,9 @@ body .App main .board-container .board .square:active {
 }
 
 body .App main .board-container .board .square-target {
-  width: 40px;
-  height: 40px;
   border-radius: 5px;
   border: none;
   background-color: #80e45d;
-  margin: 2px;
   -webkit-box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.2);
           box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.2);
   outline: none;
@@ -170,6 +157,45 @@ body .App main .board-container .board .square-target:active {
   -webkit-box-shadow: none;
           box-shadow: none;
   background-color: #6ebe51;
+}
+
+body .App main .board-container .fiveByFive {
+  -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  -ms-grid-rows: 1fr 1fr 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  gap: 10px;
+}
+
+body .App main .board-container .sFive {
+  width: 40px;
+  height: 40px;
+}
+
+body .App main .board-container .sevenBySeven {
+  -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  -ms-grid-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 5px;
+}
+
+body .App main .board-container .sSeven {
+  width: 30px;
+  height: 30px;
+}
+
+body .App main .board-container .tenByTen {
+  -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  -ms-grid-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 5px;
+}
+
+body .App main .board-container .sTen {
+  width: 20px;
+  height: 20px;
 }
 
 body .App main .board-container .buttons {
@@ -200,6 +226,7 @@ body .App main .board-container .buttons .reset {
 body .App main .board-container .buttons .start:hover,
 body .App main .board-container .buttons .reset:hover {
   color: #80e45d;
+  cursor: pointer;
 }
 
 body .App main .board-container .gameOver {
@@ -229,32 +256,51 @@ body .App nav {
 
 body .App nav .highscores {
   width: 100%;
+  text-align: center;
   background-color: rgba(19, 84, 122, 0.25);
   margin-top: 10px;
+  font-size: 20px;
   padding: 10px;
-  -webkit-box-flex: 2;
-      -ms-flex: 2;
-          flex: 2;
+  -webkit-box-flex: 3;
+      -ms-flex: 3;
+          flex: 3;
   border: 3px solid #145074;
   border-radius: 10px;
-  color: #80e45d;
+  color: #145074;
+  list-style: none;
 }
 
-body .App nav .highscores ::marker {
-  color: #145074;
+body .App nav .highscores ol {
+  margin-left: -20px;
+  text-align: left;
+  padding-top: 10px;
+}
+
+body .App nav .highscores ol li {
+  padding: 5px;
+  font-size: 16px;
+}
+
+body .App nav .highscores ol li .score-value {
+  color: #80e45d;
+  display: inline-block;
+  padding-left: 10px;
 }
 
 body .App nav .options {
+  color: #145074;
   width: 100%;
+  padding: 10px;
   background-color: rgba(19, 84, 122, 0.25);
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
   border: 3px solid #145074;
   border-radius: 10px;
+  text-align: center;
 }
 
-body .App nav .options div {
+body .App nav .options .name {
   font-size: 16px;
   color: #145074;
   display: -webkit-box;
@@ -262,14 +308,60 @@ body .App nav .options div {
   display: flex;
 }
 
-body .App nav .options div input {
+body .App nav .options .name input {
   width: 70%;
   padding-left: 5px;
-  color: #145074;
+  color: #80e45d;
   margin-left: 5px;
-  background-color: #76c0b7;
+  background-color: rgba(35, 90, 122, 0.22);
   border-radius: 5px;
   outline: none;
   border: none;
+}
+
+body .App nav .options .name input::-webkit-input-placeholder {
+  color: #79c2a0;
+}
+
+body .App nav .options .name input:-ms-input-placeholder {
+  color: #79c2a0;
+}
+
+body .App nav .options .name input::-ms-input-placeholder {
+  color: #79c2a0;
+}
+
+body .App nav .options .name input::placeholder {
+  color: #79c2a0;
+}
+
+body .App nav .options div {
+  text-align: left;
+  padding-top: 5px;
+  font-size: 16px;
+}
+
+body .App nav .options .sizeButtons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+body .App nav .options .sizeButtons button {
+  font-size: 16px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  color: #145074;
+  background: none;
+  border: none;
+  outline: none;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+body .App nav .options .sizeButtons button:hover {
+  color: #80e45d;
+  cursor: pointer;
 }
 /*# sourceMappingURL=Styles.css.map */

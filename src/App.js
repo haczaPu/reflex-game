@@ -10,9 +10,8 @@ import HighScores from "./components/HighScores";
 import Options from "./components/Options";
 
 //Generate Board
-const BASE_BOARD = [];
-const length = 25;
-for (let i = 0; i < length; i++) {
+let BASE_BOARD = [];
+for (let i = 0; i < 25; i++) {
   BASE_BOARD.push(false);
 }
 
@@ -26,7 +25,17 @@ function App() {
   const [boardSize, setBoardSize] = useState(BASE_BOARD);
   const [score, setScore] = useState(0);
   const [highScores, setHighScores] = useState([]);
-  const [name, setName] = useState("Unknown");
+  const [name, setName] = useState("");
+  const [boardLength, setBoardLength] = useState(25);
+
+  // Set new board size (options panel)
+  useEffect(() => {
+    BASE_BOARD = [];
+    for (let i = 0; i < boardLength; i++) {
+      BASE_BOARD.push(false);
+    }
+    setBoardSize(BASE_BOARD);
+  }, [boardLength]);
 
   //Get local scores
   useEffect(() => {
@@ -63,7 +72,7 @@ function App() {
         return b - a;
       };
       const newHighScores = [...highScores, score].sort(comapreScores);
-      if (newHighScores.length > 5) {
+      if (newHighScores.length > 10) {
         // eslint-disable-next-line no-unused-vars
         const newHighScores2 = newHighScores.pop();
       }
@@ -163,7 +172,7 @@ function App() {
           <Popup gameOver={gameOver} />
         </div>
         <nav>
-          <Options time={time} setName={setName} />
+          <Options time={time} setName={setName} name={name} setBoardLength={setBoardLength} start={start} />
           <HighScores highScores={highScores} setHighScores={setHighScores} score={score} />
         </nav>
       </main>

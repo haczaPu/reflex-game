@@ -84,23 +84,15 @@ body {
         }
 
         .board {
-          margin-top: 55px;
-          width: 250px;
-          height: 250px;
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: space-around;
+          margin: auto;
+          display: grid;
 
           .square {
-            width: 40px;
-            height: 40px;
             border-radius: 5px;
             border: none;
             background: $mainColor;
-            margin: 2px;
             box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.2);
             outline: none;
-            // transition: 0.1s;
             &:active {
               box-shadow: none;
               background-color: rgb(182, 13, 13);
@@ -108,22 +100,51 @@ body {
           }
 
           .square-target {
-            width: 40px;
-            height: 40px;
             border-radius: 5px;
             border: none;
-            // background-color: #1777af;
             background-color: $secColor;
-            margin: 2px;
             box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.2);
             outline: none;
-            // transition: 0.1s;
             &:active {
               box-shadow: none;
               background-color: #6ebe51;
             }
           }
         }
+
+        //Board size variants /////////////////////////////////////////////////
+        .fiveByFive {
+          grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+          grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+          gap: 10px;
+        }
+        .sFive {
+          width: 40px;
+          height: 40px;
+        }
+
+        .sevenBySeven {
+          grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+          grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+          gap: 5px;
+        }
+        .sSeven {
+          width: 30px;
+          height: 30px;
+        }
+
+        .tenByTen {
+          grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+          grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+          gap: 5px;
+        }
+
+        .sTen {
+          width: 20px;
+          height: 20px;
+        }
+        /////////////////////////////////////////////////////////////////////
+
         .buttons {
           width: 100%;
           display: flex;
@@ -144,6 +165,7 @@ body {
 
             &:hover {
               color: $secColor;
+              cursor: pointer;
             }
           }
         }
@@ -167,36 +189,81 @@ body {
 
       .highscores {
         width: 100%;
+        text-align: center;
         background-color: rgba(19, 84, 122, 0.25);
         margin-top: 10px;
+        font-size: 20px;
+
         padding: 10px;
-        flex: 2;
+        flex: 3;
         border: 3px solid $mainColor;
         border-radius: 10px;
-        color: $secColor;
-        ::marker {
-          color: $mainColor;
+        color: $mainColor;
+        list-style: none;
+        ol {
+          margin-left: -20px;
+          text-align: left;
+          padding-top: 10px;
+          li {
+            padding: 5px;
+            font-size: 16px;
+
+            .score-value {
+              color: $secColor;
+              display: inline-block;
+              padding-left: 10px;
+            }
+          }
         }
       }
       .options {
+        color: $mainColor;
         width: 100%;
+        padding: 10px;
         background-color: rgba(19, 84, 122, 0.25);
         flex: 1;
         border: 3px solid $mainColor;
         border-radius: 10px;
-        div {
+        text-align: center;
+
+        .name {
           font-size: 16px;
           color: $mainColor;
           display: flex;
           input {
             width: 70%;
             padding-left: 5px;
-            color: $mainColor;
+            color: $secColor;
             margin-left: 5px;
-            background-color: #76c0b7;
+            background-color: rgba(35, 90, 122, 0.22);
             border-radius: 5px;
             outline: none;
             border: none;
+            &::placeholder {
+              color: #79c2a0;
+            }
+          }
+        }
+        div {
+          text-align: left;
+
+          padding-top: 5px;
+          font-size: 16px;
+        }
+        .sizeButtons {
+          display: flex;
+          button {
+            font-size: 16px;
+            flex: 1;
+            color: $mainColor;
+            background: none;
+            border: none;
+            outline: none;
+            transition: 0.5s;
+            &:hover {
+              color: $secColor;
+              cursor: pointer;
+            }
           }
         }
       }

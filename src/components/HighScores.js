@@ -7,8 +7,8 @@ const Board = ({ highScores, score }) => {
       <ol>
         {highScores.map((score, index) => {
           return (
-            <li className="score-value" key={index}>
-              TOM {score}
+            <li key={index}>
+              TOM <div className="score-value">{score}</div>
             </li>
           );
         })}
