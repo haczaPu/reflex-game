@@ -335,6 +335,28 @@ body .App nav .options .name input::placeholder {
   color: #79c2a0;
 }
 
+body .App nav .options .timeSetup button {
+  font-size: 16px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  color: #145074;
+  background: none;
+  border: none;
+  outline: none;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+body .App nav .options .timeSetup button:hover {
+  color: #80e45d;
+  cursor: pointer;
+}
+
+body .App nav .options .timeSetup .btn-active {
+  color: #80e45d;
+}
+
 body .App nav .options div {
   text-align: left;
   padding-top: 5px;
@@ -363,5 +385,9 @@ body .App nav .options .sizeButtons button {
 body .App nav .options .sizeButtons button:hover {
   color: #80e45d;
   cursor: pointer;
+}
+
+body .App nav .options .sizeButtons .btn-active {
+  color: #80e45d;
 }
 /*# sourceMappingURL=Styles.css.map */

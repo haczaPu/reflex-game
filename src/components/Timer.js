@@ -1,9 +1,9 @@
 import React from "react";
 
-const Timer = ({ time }) => {
+const Timer = ({ timer }) => {
   return (
     <div className="timer">
-      TIME<div>{time}</div>
+      TIME<div>{timer}</div>
     </div>
   );
 };

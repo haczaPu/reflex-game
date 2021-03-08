@@ -244,6 +244,24 @@ body {
             }
           }
         }
+        .timeSetup {
+          button {
+            font-size: 16px;
+            flex: 1;
+            color: $mainColor;
+            background: none;
+            border: none;
+            outline: none;
+            transition: 0.5s;
+            &:hover {
+              color: $secColor;
+              cursor: pointer;
+            }
+          }
+          .btn-active {
+            color: $secColor;
+          }
+        }
         div {
           text-align: left;
 
@@ -264,6 +282,9 @@ body {
               color: $secColor;
               cursor: pointer;
             }
+          }
+          .btn-active {
+            color: $secColor;
           }
         }
       }

@@ -19,7 +19,7 @@ function App() {
   const [life, setLife] = useState(3);
   const [gameOver, setGameOver] = useState(false);
   const [start, setStart] = useState(false);
-  const [time, setTime] = useState(60);
+  const [timer, setTimer] = useState(60);
   const [timeDelay, setTimeDelay] = useState(null);
   const [targetDelay, setTargetDelay] = useState(null);
   const [boardSize, setBoardSize] = useState(BASE_BOARD);
@@ -27,6 +27,7 @@ function App() {
   const [highScores, setHighScores] = useState([]);
   const [name, setName] = useState("");
   const [boardLength, setBoardLength] = useState(25);
+  const [time, setTime] = useState(60);
 
   // Set new board size (options panel)
   useEffect(() => {
@@ -83,19 +84,34 @@ function App() {
 
   //Lvl change
   useEffect(() => {
-    if (time < 50) {
-      setTargetDelay(800);
+    if (time === 90) {
+      if (timer < 75) {
+        setTargetDelay(800);
+      }
+      if (timer < 55) {
+        setTargetDelay(700);
+      }
+      if (timer < 30) {
+        setTargetDelay(600);
+      }
+      if (timer < 10) {
+        setTargetDelay(500);
+      }
+    } else {
+      if (timer < 50) {
+        setTargetDelay(800);
+      }
+      if (timer < 35) {
+        setTargetDelay(700);
+      }
+      if (timer < 20) {
+        setTargetDelay(600);
+      }
+      if (timer < 10) {
+        setTargetDelay(500);
+      }
     }
-    if (time < 35) {
-      setTargetDelay(700);
-    }
-    if (time < 20) {
-      setTargetDelay(600);
-    }
-    if (time < 10) {
-      setTargetDelay(500);
-    }
-  }, [time]);
+  }, [timer, time]);
 
   //Draw target
   useInterval(() => {
@@ -112,7 +128,7 @@ function App() {
     setTargetDelay(1000);
     setLife(3);
     setScore(0);
-    setTime(60);
+    setTimer(time);
   };
 
   //Reset
@@ -125,15 +141,15 @@ function App() {
     setLife(3);
     setScore(0);
 
-    setTime(60);
+    setTimer(time);
     console.log("Reset");
   };
 
   //Timer
   useInterval(() => {
-    if (start && time > 0) {
-      setTime(time - 1);
-    } else if (time === 0) {
+    if (start && timer > 0) {
+      setTimer(timer - 1);
+    } else if (timer === 0) {
       setStart(false);
       setGameOver(true);
       setTargetDelay(null);
@@ -150,7 +166,7 @@ function App() {
               <Score score={score} />
               <Life life={life} />
             </div>
-            <Timer time={time} />
+            <Timer timer={timer} />
           </div>
           <Board
             start={start}
@@ -172,7 +188,16 @@ function App() {
           <Popup gameOver={gameOver} />
         </div>
         <nav>
-          <Options time={time} setName={setName} name={name} setBoardLength={setBoardLength} start={start} />
+          <Options
+            setTimer={setTimer}
+            setTime={setTime}
+            time={time}
+            setName={setName}
+            name={name}
+            setBoardLength={setBoardLength}
+            boardLength={boardLength}
+            start={start}
+          />
           <HighScores highScores={highScores} setHighScores={setHighScores} score={score} />
         </nav>
       </main>
