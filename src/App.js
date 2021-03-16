@@ -25,7 +25,7 @@ function App() {
   const [boardSize, setBoardSize] = useState(BASE_BOARD);
   const [score, setScore] = useState(0);
   const [highScores, setHighScores] = useState([]);
-  const [name, setName] = useState("");
+  const [name, setName] = useState("UNKNOWN");
   const [boardLength, setBoardLength] = useState(25);
   const [time, setTime] = useState(60);
 
@@ -70,13 +70,9 @@ function App() {
 
       //High scores positioning
       const comapreScores = (a, b) => {
-        return b - a;
+        return b.score - a.score;
       };
-      const newHighScores = [...highScores, score].sort(comapreScores);
-      if (newHighScores.length > 10) {
-        // eslint-disable-next-line no-unused-vars
-        const newHighScores2 = newHighScores.pop();
-      }
+      const newHighScores = [...highScores, { name: name, score: score }].sort(comapreScores).slice(0, 10);
       setHighScores(newHighScores);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -198,7 +194,7 @@ function App() {
             boardLength={boardLength}
             start={start}
           />
-          <HighScores highScores={highScores} setHighScores={setHighScores} score={score} />
+          <HighScores highScores={highScores} />
         </nav>
       </main>
     </div>
