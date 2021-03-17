@@ -10,10 +10,14 @@ import HighScores from "./components/HighScores";
 import Options from "./components/Options";
 
 //Generate Board
-let BASE_BOARD = [];
-for (let i = 0; i < 25; i++) {
-  BASE_BOARD.push(false);
-}
+
+const generateBaseBoard = num => {
+  let BASE_BOARD = [];
+  for (let i = 0; i < num; i++) {
+    BASE_BOARD.push(false);
+  }
+  return BASE_BOARD;
+};
 
 function App() {
   const [life, setLife] = useState(3);
@@ -22,7 +26,7 @@ function App() {
   const [timer, setTimer] = useState(60);
   const [timeDelay, setTimeDelay] = useState(null);
   const [targetDelay, setTargetDelay] = useState(null);
-  const [boardSize, setBoardSize] = useState(BASE_BOARD);
+  const [boardSize, setBoardSize] = useState(generateBaseBoard(25));
   const [score, setScore] = useState(0);
   const [highScores, setHighScores] = useState([]);
   const [name, setName] = useState("UNKNOWN");
@@ -31,11 +35,21 @@ function App() {
 
   // Set new board size (options panel)
   useEffect(() => {
-    BASE_BOARD = [];
-    for (let i = 0; i < boardLength; i++) {
-      BASE_BOARD.push(false);
+    if (boardLength === 25) {
+      generateBaseBoard(25);
     }
-    setBoardSize(BASE_BOARD);
+    if (boardLength === 49) {
+      generateBaseBoard(49);
+    }
+    if (boardLength === 100) {
+      generateBaseBoard(100);
+    }
+
+    // BASE_BOARD = [];
+    // for (let i = 0; i < boardLength; i++) {
+    //   BASE_BOARD.push(false);
+    // }
+    // setBoardSize(BASE_BOARD);
   }, [boardLength]);
 
   //Get local scores
@@ -64,7 +78,7 @@ function App() {
   useEffect(() => {
     if (life === 0) {
       setGameOver(true);
-      setBoardSize(BASE_BOARD);
+      setBoardSize(generateBaseBoard(boardLength));
       setTimeDelay(null);
       setTargetDelay(null);
 
@@ -111,8 +125,8 @@ function App() {
 
   //Draw target
   useInterval(() => {
-    const newBoard = [...BASE_BOARD];
-    newBoard[Math.floor(Math.random() * BASE_BOARD.length)] = true;
+    const newBoard = generateBaseBoard();
+    newBoard[Math.floor(Math.random() * boardSize.length)] = true;
     setBoardSize(newBoard);
   }, targetDelay);
 
@@ -131,7 +145,7 @@ function App() {
   const handleResetBtn = () => {
     setStart(false);
     setGameOver(false);
-    setBoardSize(BASE_BOARD);
+    setBoardSize(generateBaseBoard(boardLength));
     setTimeDelay(null);
     setTargetDelay(null);
     setLife(3);
