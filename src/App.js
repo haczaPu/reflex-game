@@ -11,9 +11,9 @@ import Options from "./components/Options";
 
 //Generate Board
 
-const generateBaseBoard = num => {
+const generateBaseBoard = () => {
   let BASE_BOARD = [];
-  for (let i = 0; i < num; i++) {
+  for (let i = 0; i < 25; i++) {
     BASE_BOARD.push(false);
   }
   return BASE_BOARD;
@@ -26,7 +26,7 @@ function App() {
   const [timer, setTimer] = useState(60);
   const [timeDelay, setTimeDelay] = useState(null);
   const [targetDelay, setTargetDelay] = useState(null);
-  const [boardSize, setBoardSize] = useState(generateBaseBoard(25));
+  const [boardSize, setBoardSize] = useState(generateBaseBoard());
   const [score, setScore] = useState(0);
   const [highScores, setHighScores] = useState([]);
   const [name, setName] = useState("UNKNOWN");
@@ -35,15 +35,7 @@ function App() {
 
   // Set new board size (options panel)
   useEffect(() => {
-    if (boardLength === 25) {
-      generateBaseBoard(25);
-    }
-    if (boardLength === 49) {
-      generateBaseBoard(49);
-    }
-    if (boardLength === 100) {
-      generateBaseBoard(100);
-    }
+    generateBaseBoard();
 
     // BASE_BOARD = [];
     // for (let i = 0; i < boardLength; i++) {
@@ -78,7 +70,7 @@ function App() {
   useEffect(() => {
     if (life === 0) {
       setGameOver(true);
-      setBoardSize(generateBaseBoard(boardLength));
+      setBoardSize(generateBaseBoard());
       setTimeDelay(null);
       setTargetDelay(null);
 
@@ -145,7 +137,7 @@ function App() {
   const handleResetBtn = () => {
     setStart(false);
     setGameOver(false);
-    setBoardSize(generateBaseBoard(boardLength));
+    setBoardSize(generateBaseBoard());
     setTimeDelay(null);
     setTargetDelay(null);
     setLife(3);
