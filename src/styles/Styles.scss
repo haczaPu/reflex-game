@@ -1,3 +1,13 @@
+@import "./boardSize";
+@import "./variables";
+
+@mixin flexCenter($direction) {
+  display: flex;
+  justify-content: center;
+  flex-direction: $direction;
+  width: 10%;
+}
+
 * {
   margin: 0;
   box-sizing: border-box;
@@ -5,31 +15,21 @@
   text-transform: uppercase;
 }
 
-//Variables
-$mainColor: #145074;
-$secColor: #80e45d;
-
 body {
-  background-image: linear-gradient(60deg, #15446b 0%, #76c0b7 100%);
   display: flex;
+  background-image: linear-gradient(60deg, $bgFirstColor 0%, $bgSecColor 100%);
   justify-content: center;
   width: 100vw;
   height: 100vh;
 
   .App {
+    @include flexCenter(column);
     width: 100%;
-    // background-color: rgb(194, 193, 193);
     margin-top: 15%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
     position: relative;
 
     header {
-      width: 100%;
-      display: flex;
-      justify-content: center;
       text-align: center;
       font-size: 80px;
       font-weight: 700;
@@ -53,9 +53,10 @@ body {
         .numbers-container {
           color: $mainColor;
           display: flex;
-          width: 100%;
-          justify-content: space-between;
           padding: 10px;
+          justify-content: space-between;
+          width: 100%;
+
           .life {
             font-size: 25px;
             div {
@@ -86,7 +87,6 @@ body {
         .board {
           margin: auto;
           display: grid;
-
           .square {
             border-radius: 5px;
             border: none;
@@ -111,46 +111,11 @@ body {
             }
           }
         }
-
-        //Board size variants /////////////////////////////////////////////////
-        .fiveByFive {
-          grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-          grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-          gap: 10px;
-        }
-        .sFive {
-          width: 40px;
-          height: 40px;
-        }
-
-        .sevenBySeven {
-          grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-          grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-          gap: 5px;
-        }
-        .sSeven {
-          width: 30px;
-          height: 30px;
-        }
-
-        .tenByTen {
-          grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-          grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-          gap: 5px;
-        }
-
-        .sTen {
-          width: 20px;
-          height: 20px;
-        }
-        /////////////////////////////////////////////////////////////////////
-
         .buttons {
           width: 100%;
           display: flex;
           justify-content: space-between;
           margin-top: auto;
-
           .start,
           .reset {
             width: 120px;
@@ -169,6 +134,7 @@ body {
             }
           }
         }
+
         .gameOver {
           text-align: center;
           color: $secColor;
@@ -188,12 +154,10 @@ body {
       width: 200px;
 
       .highscores {
-        width: 100%;
         text-align: center;
-        background-color: rgba(19, 84, 122, 0.25);
-        margin-top: 10px;
+        background-color: $navBg;
         font-size: 20px;
-
+        margin-top: 10px;
         padding: 10px;
         flex: 3;
         border: 3px solid $mainColor;
@@ -220,7 +184,7 @@ body {
         color: $mainColor;
         width: 100%;
         padding: 10px;
-        background-color: rgba(19, 84, 122, 0.25);
+        background-color: $navBg;
         flex: 1;
         border: 3px solid $mainColor;
         border-radius: 10px;
@@ -235,7 +199,7 @@ body {
             padding-left: 5px;
             color: $secColor;
             margin-left: 5px;
-            background-color: rgba(35, 90, 122, 0.22);
+            background-color: $inputBg;
             border-radius: 5px;
             outline: none;
             border: none;
@@ -269,7 +233,7 @@ body {
           font-size: 16px;
         }
         .sizeButtons {
-          display: flex;
+          // display: flex;
           button {
             font-size: 16px;
             flex: 1;

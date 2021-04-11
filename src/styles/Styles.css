@@ -1,3 +1,42 @@
+.fiveByFive {
+  -ms-grid-columns: (1fr)[5];
+      grid-template-columns: repeat(5, 1fr);
+  -ms-grid-rows: (1fr)[5];
+      grid-template-rows: repeat(5, 1fr);
+  gap: 10px;
+}
+
+.sFive {
+  width: 40px;
+  height: 40px;
+}
+
+.sevenBySeven {
+  -ms-grid-columns: (1fr)[7];
+      grid-template-columns: repeat(7, 1fr);
+  -ms-grid-rows: (1fr)[7];
+      grid-template-rows: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.sSeven {
+  width: 30px;
+  height: 30px;
+}
+
+.tenByTen {
+  -ms-grid-columns: (1fr)[10];
+      grid-template-columns: repeat(10, 1fr);
+  -ms-grid-rows: (1fr)[10];
+      grid-template-rows: repeat(10, 1fr);
+  gap: 5px;
+}
+
+.sTen {
+  width: 20px;
+  height: 20px;
+}
+
 * {
   margin: 0;
   -webkit-box-sizing: border-box;
@@ -7,10 +46,10 @@
 }
 
 body {
-  background-image: linear-gradient(60deg, #15446b 0%, #76c0b7 100%);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  background-image: linear-gradient(60deg, #24374c 0%, #59a69d 100%);
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -19,18 +58,19 @@ body {
 }
 
 body .App {
-  width: 100%;
-  margin-top: 15%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  width: 10%;
+  width: 100%;
+  margin-top: 15%;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -38,17 +78,10 @@ body .App {
 }
 
 body .App header {
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   text-align: center;
   font-size: 80px;
   font-weight: 700;
-  color: #145074;
+  color: #1d4158;
   padding-right: 200px;
 }
 
@@ -61,7 +94,7 @@ body .App main {
 body .App main .board-container {
   width: 550px;
   height: 550px;
-  border: 3px solid #145074;
+  border: 3px solid #1d4158;
   border-radius: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -80,15 +113,15 @@ body .App main .board-container {
 }
 
 body .App main .board-container .numbers-container {
-  color: #145074;
+  color: #1d4158;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 100%;
+  padding: 10px;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 10px;
+  width: 100%;
 }
 
 body .App main .board-container .numbers-container .life {
@@ -96,7 +129,7 @@ body .App main .board-container .numbers-container .life {
 }
 
 body .App main .board-container .numbers-container .life div {
-  color: #80e45d;
+  color: #81cc66;
   display: inline-block;
   padding-left: 40px;
 }
@@ -108,7 +141,7 @@ body .App main .board-container .numbers-container .timer {
 }
 
 body .App main .board-container .numbers-container .timer div {
-  color: #80e45d;
+  color: #81cc66;
   font-size: 40px;
   text-align: right;
 }
@@ -118,7 +151,7 @@ body .App main .board-container .numbers-container .score {
 }
 
 body .App main .board-container .numbers-container .score div {
-  color: #80e45d;
+  color: #81cc66;
   display: inline-block;
   padding-left: 10px;
 }
@@ -132,7 +165,7 @@ body .App main .board-container .board {
 body .App main .board-container .board .square {
   border-radius: 5px;
   border: none;
-  background: #145074;
+  background: #1d4158;
   -webkit-box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.2);
           box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.2);
   outline: none;
@@ -147,7 +180,7 @@ body .App main .board-container .board .square:active {
 body .App main .board-container .board .square-target {
   border-radius: 5px;
   border: none;
-  background-color: #80e45d;
+  background-color: #81cc66;
   -webkit-box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.2);
           box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.2);
   outline: none;
@@ -157,45 +190,6 @@ body .App main .board-container .board .square-target:active {
   -webkit-box-shadow: none;
           box-shadow: none;
   background-color: #6ebe51;
-}
-
-body .App main .board-container .fiveByFive {
-  -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr;
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  -ms-grid-rows: 1fr 1fr 1fr 1fr 1fr;
-      grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-  gap: 10px;
-}
-
-body .App main .board-container .sFive {
-  width: 40px;
-  height: 40px;
-}
-
-body .App main .board-container .sevenBySeven {
-  -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  -ms-grid-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-      grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  gap: 5px;
-}
-
-body .App main .board-container .sSeven {
-  width: 30px;
-  height: 30px;
-}
-
-body .App main .board-container .tenByTen {
-  -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  -ms-grid-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-      grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  gap: 5px;
-}
-
-body .App main .board-container .sTen {
-  width: 20px;
-  height: 20px;
 }
 
 body .App main .board-container .buttons {
@@ -216,7 +210,7 @@ body .App main .board-container .buttons .reset {
   font-size: 30px;
   background: none;
   border: none;
-  color: #145074;
+  color: #1d4158;
   font-weight: bold;
   -webkit-transition: 0.5s;
   transition: 0.5s;
@@ -225,13 +219,13 @@ body .App main .board-container .buttons .reset {
 
 body .App main .board-container .buttons .start:hover,
 body .App main .board-container .buttons .reset:hover {
-  color: #80e45d;
+  color: #81cc66;
   cursor: pointer;
 }
 
 body .App main .board-container .gameOver {
   text-align: center;
-  color: #80e45d;
+  color: #81cc66;
   font-size: 60px;
   padding-bottom: 5px;
   position: absolute;
@@ -249,24 +243,23 @@ body .App nav {
       -ms-flex-direction: column;
           flex-direction: column;
   margin-left: 10px;
-  color: #80e45d;
+  color: #81cc66;
   font-size: 20px;
   width: 200px;
 }
 
 body .App nav .highscores {
-  width: 100%;
   text-align: center;
-  background-color: rgba(19, 84, 122, 0.25);
-  margin-top: 10px;
+  background-color: rgba(13, 56, 82, 0.22);
   font-size: 20px;
+  margin-top: 10px;
   padding: 10px;
   -webkit-box-flex: 3;
       -ms-flex: 3;
           flex: 3;
-  border: 3px solid #145074;
+  border: 3px solid #1d4158;
   border-radius: 10px;
-  color: #145074;
+  color: #1d4158;
   list-style: none;
 }
 
@@ -282,27 +275,27 @@ body .App nav .highscores ol li {
 }
 
 body .App nav .highscores ol li .score-value {
-  color: #80e45d;
+  color: #81cc66;
   display: inline-block;
   padding-left: 10px;
 }
 
 body .App nav .options {
-  color: #145074;
+  color: #1d4158;
   width: 100%;
   padding: 10px;
-  background-color: rgba(19, 84, 122, 0.25);
+  background-color: rgba(13, 56, 82, 0.22);
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
-  border: 3px solid #145074;
+  border: 3px solid #1d4158;
   border-radius: 10px;
   text-align: center;
 }
 
 body .App nav .options .name {
   font-size: 16px;
-  color: #145074;
+  color: #1d4158;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -311,9 +304,9 @@ body .App nav .options .name {
 body .App nav .options .name input {
   width: 70%;
   padding-left: 5px;
-  color: #80e45d;
+  color: #81cc66;
   margin-left: 5px;
-  background-color: rgba(35, 90, 122, 0.22);
+  background-color: rgba(35, 76, 122, 0.164);
   border-radius: 5px;
   outline: none;
   border: none;
@@ -340,7 +333,7 @@ body .App nav .options .timeSetup button {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
-  color: #145074;
+  color: #1d4158;
   background: none;
   border: none;
   outline: none;
@@ -349,12 +342,12 @@ body .App nav .options .timeSetup button {
 }
 
 body .App nav .options .timeSetup button:hover {
-  color: #80e45d;
+  color: #81cc66;
   cursor: pointer;
 }
 
 body .App nav .options .timeSetup .btn-active {
-  color: #80e45d;
+  color: #81cc66;
 }
 
 body .App nav .options div {
@@ -363,18 +356,12 @@ body .App nav .options div {
   font-size: 16px;
 }
 
-body .App nav .options .sizeButtons {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
 body .App nav .options .sizeButtons button {
   font-size: 16px;
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
-  color: #145074;
+  color: #1d4158;
   background: none;
   border: none;
   outline: none;
@@ -383,11 +370,11 @@ body .App nav .options .sizeButtons button {
 }
 
 body .App nav .options .sizeButtons button:hover {
-  color: #80e45d;
+  color: #81cc66;
   cursor: pointer;
 }
 
 body .App nav .options .sizeButtons .btn-active {
-  color: #80e45d;
+  color: #81cc66;
 }
 /*# sourceMappingURL=Styles.css.map */

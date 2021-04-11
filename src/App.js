@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useInterval } from "react-use";
-import "./Styles.css";
+import "./styles/Styles.css";
 import Life from "./components/LifeCounter";
 import Board from "./components/Board";
 import Timer from "./components/Timer";
@@ -11,9 +11,9 @@ import Options from "./components/Options";
 
 //Generate Board
 
-const generateBaseBoard = () => {
+const generateBaseBoard = size => {
   let BASE_BOARD = [];
-  for (let i = 0; i < 25; i++) {
+  for (let i = 0; i < size; i++) {
     BASE_BOARD.push(false);
   }
   return BASE_BOARD;
@@ -35,13 +35,7 @@ function App() {
 
   // Set new board size (options panel)
   useEffect(() => {
-    generateBaseBoard();
-
-    // BASE_BOARD = [];
-    // for (let i = 0; i < boardLength; i++) {
-    //   BASE_BOARD.push(false);
-    // }
-    // setBoardSize(BASE_BOARD);
+    setBoardSize(generateBaseBoard(boardLength));
   }, [boardLength]);
 
   //Get local scores
@@ -70,7 +64,7 @@ function App() {
   useEffect(() => {
     if (life === 0) {
       setGameOver(true);
-      setBoardSize(generateBaseBoard());
+      setBoardSize(generateBaseBoard(boardLength));
       setTimeDelay(null);
       setTargetDelay(null);
 
@@ -117,8 +111,8 @@ function App() {
 
   //Draw target
   useInterval(() => {
-    const newBoard = generateBaseBoard();
-    newBoard[Math.floor(Math.random() * boardSize.length)] = true;
+    let newBoard = generateBaseBoard(boardLength);
+    newBoard[Math.floor(Math.random() * boardLength)] = true;
     setBoardSize(newBoard);
   }, targetDelay);
 
@@ -137,14 +131,12 @@ function App() {
   const handleResetBtn = () => {
     setStart(false);
     setGameOver(false);
-    setBoardSize(generateBaseBoard());
+    setBoardSize(generateBaseBoard(boardLength));
     setTimeDelay(null);
     setTargetDelay(null);
     setLife(3);
     setScore(0);
-
     setTimer(time);
-    console.log("Reset");
   };
 
   //Timer

@@ -1,0 +1,34 @@
+//Board size variants
+
+@mixin boardGrid($num, $gap) {
+  grid-template-columns: repeat($num, 1fr);
+  grid-template-rows: repeat($num, 1fr);
+  gap: $gap;
+}
+
+@mixin squareSize($sideLength) {
+  width: $sideLength;
+  height: $sideLength;
+}
+
+.fiveByFive {
+  @include boardGrid(5, 10px);
+}
+.sFive {
+  @include squareSize(40px);
+}
+
+.sevenBySeven {
+  @include boardGrid(7, 5px);
+}
+.sSeven {
+  @include squareSize(30px);
+}
+
+.tenByTen {
+  @include boardGrid(10, 5px);
+}
+
+.sTen {
+  @include squareSize(20px);
+}
